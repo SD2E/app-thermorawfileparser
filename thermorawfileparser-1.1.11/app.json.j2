@@ -9,7 +9,7 @@
   "defaultProcessorsPerNode": 1,
   "defaultNodeCount": 1,
   "defaultQueue": "normal",
-  "label": "{{ date_time.iso8601_micro }}",
+  "label": "{{ app.name }}",
   "modules": ["load tacc-singularity"],
   "shortDescription": "{{ app.description }}",
   "templatePath": "runner-template.sh",
@@ -18,7 +18,7 @@
     {
       "id": "raw_file",
       "value": {
-        "default": "agave://data-tacc-work-wallen/sd2e/sample/thermorawfileparser/raw_file",
+        "default": "agave://data-tacc-work-wallen/sd2e/sample/thermorawfileparser/small.RAW",
         "required": false,
         "visible": true
       },
@@ -32,7 +32,7 @@
     {
       "id": "raw_directory",
       "value": {
-        "default": "agave://data-tacc-work-wallen/sd2e/sample/thermorawfileparser/raw_dir",
+        "default": "agave://data-tacc-work-wallen/sd2e/sample/thermorawfileparser/TestFolderMgfs",
         "required": false,
         "visible": true
       },
@@ -67,7 +67,7 @@
         "type": "string",
         "visible": true,
         "required": false
-      }
+      },
       "details": {
         "description": "The output directory. Specify either this or an output file.",
         "label": "Output directory",
@@ -82,7 +82,7 @@
         "type": "integer",
         "visible": true,
         "required": false
-      }
+      },
       "details": {
         "description": "The spectra output format. 0 for MGF, 1 for msML, 2 for indexed mzML, 3 for Parquet.",
         "label": "Output format",
