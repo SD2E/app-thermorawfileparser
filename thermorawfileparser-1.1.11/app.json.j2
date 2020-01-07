@@ -1,0 +1,105 @@
+{
+  "name": "{{ agave.username }}-{{ app.name }}",
+  "version": "{{ app.version }}",
+  "executionType": "HPC",
+  "executionSystem": "hpc-tacc-wrangler-{{ agave.username }}",
+  "parallelism": "SERIAL",
+  "deploymentPath": "{{ agave.username }}/apps/{{ app.bundle }}",
+  "deploymentSystem": "data-sd2e-projects-users",
+  "defaultProcessorsPerNode": 1,
+  "defaultNodeCount": 1,
+  "defaultQueue": "normal",
+  "label": "{{ date_time.iso8601_micro }}",
+  "modules": ["load tacc-singularity"],
+  "shortDescription": "{{ app.description }}",
+  "templatePath": "runner-template.sh",
+  "testPath": "tester.sh",
+  "inputs": [
+    {
+      "id": "raw_file",
+      "value": {
+        "default": "agave://data-tacc-work-wallen/sd2e/sample/thermorawfileparser/raw_file",
+        "required": false,
+        "visible": true
+      },
+      "details": {
+        "description": "The raw file input. Specify either this or a directory.",
+        "label": "Input file",
+        "argument": "--input=",
+        "showArgument": true
+      }
+    },
+    {
+      "id": "raw_directory",
+      "value": {
+        "default": "agave://data-tacc-work-wallen/sd2e/sample/thermorawfileparser/raw_dir",
+        "required": false,
+        "visible": true
+      },
+      "details": {
+        "description": "The directory containing the raw files. Specify either this or a single file.",
+        "label": "Input file",
+        "argument": "--input=",
+        "showArgument": true
+      }
+    }
+],
+  "parameters": [
+    {
+      "id": "out_file",
+      "value": {
+        "default": "output",
+        "type": "string",
+        "visible": true,
+        "required": false
+      },
+      "details": {
+        "description": "The output file. Specify either this or an output directory.",
+        "label": "Output file",
+        "argument": "--output_file=",
+        "showArgument": true
+      }
+    },
+    {
+      "id": "out_directory",
+      "value": {
+        "default": "output",
+        "type": "string",
+        "visible": true,
+        "required": false
+      }
+      "details": {
+        "description": "The output directory. Specify either this or an output file.",
+        "label": "Output directory",
+        "argument": "--output=",
+        "showArgument": true
+      }
+    },
+    {
+      "id": "format",
+      "value": {
+        "default": 1,
+        "type": "integer",
+        "visible": true,
+        "required": false
+      }
+      "details": {
+        "description": "The spectra output format. 0 for MGF, 1 for msML, 2 for indexed mzML, 3 for Parquet.",
+        "label": "Output format",
+        "argument": "--format=",
+        "showArgument": true
+      }
+    },
+    {
+      "id": "CONTAINER_IMAGE",
+      "value": {
+        "default": "{{ docker.organization }}/{{ docker.repo }}:{{ docker.tag }}",
+        "description": "Container Image. Do not edit.",
+        "type": "string",
+        "visible": false,
+        "required": true
+      }
+    }
+],
+  "outputs": []
+}
