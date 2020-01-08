@@ -38,17 +38,27 @@
       },
       "details": {
         "description": "The directory containing the raw files. Specify either this or a single file.",
-        "label": "Input file",
-        "argument": "--input=",
+        "label": "Input directory",
+        "argument": "--input_directory=",
         "showArgument": true
       }
     }
 ],
   "parameters": [
     {
+      "id": "CONTAINER_IMAGE",
+      "value": {
+        "default": "{{ docker.organization }}/{{ docker.repo }}:{{ docker.tag }}",
+        "description": "Container Image. Do not edit.",
+        "type": "string",
+        "visible": false,
+        "required": true
+      }
+    },
+    {
       "id": "out_file",
       "value": {
-        "default": "output",
+        "default": "output.mzML",
         "type": "string",
         "visible": true,
         "required": false
@@ -70,9 +80,7 @@
       },
       "details": {
         "description": "The output directory. Specify either this or an output file.",
-        "label": "Output directory",
-        "argument": "--output=",
-        "showArgument": true
+        "label": "Output directory"
       }
     },
     {
@@ -84,20 +92,10 @@
         "required": false
       },
       "details": {
-        "description": "The spectra output format. 0 for MGF, 1 for msML, 2 for indexed mzML, 3 for Parquet.",
+        "description": "The spectra output format. 0 for MGF, 1 for mzML, 2 for indexed mzML, 3 for Parquet.",
         "label": "Output format",
         "argument": "--format=",
         "showArgument": true
-      }
-    },
-    {
-      "id": "CONTAINER_IMAGE",
-      "value": {
-        "default": "{{ docker.organization }}/{{ docker.repo }}:{{ docker.tag }}",
-        "description": "Container Image. Do not edit.",
-        "type": "string",
-        "visible": false,
-        "required": true
       }
     }
 ],
