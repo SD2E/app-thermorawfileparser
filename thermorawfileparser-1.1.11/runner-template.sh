@@ -24,34 +24,35 @@ PARAMS=" "
 
 if [ -n "${raw_file}" ];
 then
-	PARAMS="${PARAMS} --input=${raw_file} "
+	PARAMS="${PARAMS} ${raw_file} "
 
 elif [ -n "${raw_directory}" ];
 then
-	PARAMS="${PARAMS} --input_directory=${raw_directory} "
+	PARAMS="${PARAMS} ${raw_directory} "
 
 else
 	echo "Error: must specify either an input file or input directory"
-	return
+	return 1
 fi
 
 
 if [ -n "${out_file}" ];
 then
-	PARAMS="${PARAMS} --output_file=${out_file} "
+	PARAMS="${PARAMS} ${out_file} "
 
 elif [ -n "${out_directory}" ];
 then
 	PARAMS="${PARAMS} --output=${out_directory} "
+	mkdir -p ${out_directory}
 
 else
 	echo "Error: must specify either an output file or output directory"
-	return
+	return 1
 fi
 
 if [ -n "${format}" ];
 then
-	PARAMS="${PARAMS} --format=${format} "
+	PARAMS="${PARAMS} ${format} "
 else
 	PARAMS="${PARAMS} --format=1 "
 fi
