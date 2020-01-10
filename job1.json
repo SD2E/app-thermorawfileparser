@@ -1,0 +1,34 @@
+{
+  "name":"wallen-thermorawfileparser test-1578426899",
+  "appId": "wallen-thermorawfileparser-1.1.11",
+  "batchQueue": "normal",
+  "maxRunTime": "01:00:00",
+  "memoryPerNode": "1GB",
+  "nodeCount": 1,
+  "processorsPerNode": 1,
+  "archive": false,
+  "inputs": {
+    "raw_file": "agave://data-tacc-work-wallen/sd2e/sample/thermorawfileparser/small.RAW"
+  },
+  "parameters": {
+    "out_file": "output",
+    "format": "3"
+  },
+  "notifications": [
+    {
+      "url":"https://requestbin.agaveapi.co/?job_id=${JOB_ID}&status=${JOB_STATUS}",
+      "event":"*",
+      "persistent":true
+    },
+    {
+      "url":"wallen@tacc.utexas.edu",
+      "event":"FINISHED",
+          "persistent":false
+    },
+    {
+      "url":"wallen@tacc.utexas.edu",
+      "event":"FAILED",
+      "persistent":false
+    }
+  ]
+}
