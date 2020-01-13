@@ -12,7 +12,7 @@
   },
   "parameters": {
     "out_directory": "output",
-    "format": "0"
+    "format": "1"
   },
   "notifications": [
     {

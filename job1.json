@@ -11,8 +11,8 @@
     "raw_file": "agave://data-tacc-work-wallen/sd2e/sample/thermorawfileparser/small.RAW"
   },
   "parameters": {
-    "out_file": "output",
-    "format": "3"
+    "out_file": "output.mzML",
+    "format": "1"
   },
   "notifications": [
     {
