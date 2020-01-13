@@ -24,21 +24,21 @@ PARAMS=" "
 
 if [ -n "${raw_file}" ];
 then
-	PARAMS="${PARAMS} ${raw_file} "
+	PARAMS="${PARAMS} --input=${raw_file} "
 
 elif [ -n "${raw_directory}" ];
 then
-	PARAMS="${PARAMS} ${raw_directory} "
+	PARAMS="${PARAMS} --input_directory=${raw_directory} "
 
 else
 	echo "Error: must specify either an input file or input directory"
-	return 1
+	exit
 fi
 
 
 if [ -n "${out_file}" ];
 then
-	PARAMS="${PARAMS} ${out_file} "
+	PARAMS="${PARAMS} --output_file=${out_file} "
 
 elif [ -n "${out_directory}" ];
 then
@@ -47,16 +47,18 @@ then
 
 else
 	echo "Error: must specify either an output file or output directory"
-	return 1
+	exit
 fi
 
 if [ -n "${format}" ];
 then
-	PARAMS="${PARAMS} ${format} "
+	PARAMS="${PARAMS} --format=${format} "
 else
 	PARAMS="${PARAMS} --format=1 "
 fi
 
-#mkdir -p ./output/
-container_exec ${CONTAINER_IMAGE} ${COMMAND} ${PARAMS}
+echo "================================================================"
+echo "COMMAND = container_exec ${CONTAINER_IMAGE} ${COMMAND} ${PARAMS}"
+echo "================================================================"
 
+container_exec ${CONTAINER_IMAGE} ${COMMAND} ${PARAMS}
